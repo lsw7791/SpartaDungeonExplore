@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,15 +22,26 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
 
     private Rigidbody rigidbody;
+    private PlayerCondition playerCondition;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        playerCondition = GetComponent<PlayerCondition>(); 
+
     }
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (IsRunning())
+        {
+            playerCondition.ReduceStaminaWhileRunning();
+        }
     }
 
     private void FixedUpdate()
@@ -121,6 +131,11 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    bool IsRunning()
+    {
+        return moveSpeed > 2.0f;
     }
 
     public void ToggleCursor(bool toggle)

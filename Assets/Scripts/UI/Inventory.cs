@@ -11,7 +11,6 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         inventory.SetActive(false);
-        Cursor.visible = false;
     }
 
     public void OnInventoryButton(InputAction.CallbackContext callbackContext)
