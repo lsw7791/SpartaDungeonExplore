@@ -48,15 +48,24 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     void HealIfNearCampfire()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, healRange);
+
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.CompareTag("Campfire"))
             {
-                EatMeats(heal);
-                break; 
+                float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
+
+                if (distance <= healRange && !hitCollider.bounds.Intersects(GetComponent<Collider>().bounds))
+                {
+                    EatMeats(heal);
+                    break;
+                }
             }
         }
     }
+
+
+
 
     public void EatMeats(float amount)
     {
