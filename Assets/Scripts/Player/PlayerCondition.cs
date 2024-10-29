@@ -52,15 +52,20 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         {
             if (hitCollider.CompareTag("Campfire"))
             {
-                Eat(heal);
+                EatMeats(heal);
                 break; 
             }
         }
     }
 
-    public void Eat(float amount)
+    public void EatMeats(float amount)
     {
         health.Add(amount);
+    }
+
+    public void EatFruits(float amount)
+    {
+        stamina.Add(amount);
     }
 
     public void Die()

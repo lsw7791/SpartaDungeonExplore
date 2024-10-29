@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ItemType
 {
@@ -26,7 +27,7 @@ public class ItemData : ScriptableObject
     public string displayName;
     public string description;
     public ItemType type;
-    public Mesh icon;
+    public Sprite icon;
     public GameObject dropPrefab;
 
     [Header("Stacking")]
